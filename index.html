@@ -1,193 +1,414 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twibbon FORMADIKSI</title>
 
-<title>Twibbon FORMADIKSI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<style>
+    <style>
+      :root {
+        --text-main: #ffffff;
+        --text-muted: #e2e8f0;
+      }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
 
-body{
-    background:#f5f5f5;
-    display:flex;
-    justify-content:center;
-    padding:40px 15px;
-}
+      body {
+        background-color: #0f172a;
+        min-height: 100vh;
+      }
 
-.container{
-    width:100%;
-    max-width:700px;
-    background:white;
-    border-radius:18px;
-    padding:30px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
+      /* Hero Section dengan Gambar Latar */
+      .hero-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100%;
+        background-image: url("bg1.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+        padding: 40px 20px;
+      }
 
-h1{
-    text-align:center;
-    margin-bottom:10px;
-}
+      /* Overlay Gelap Tipis khas iOS Dark Mode */
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.4);
+        z-index: 1;
+      }
 
-.desc{
-    text-align:center;
-    color:#666;
-    margin-bottom:25px;
-}
+      /* Glassmorphism Card Utama ala iOS */
+      .hero-container {
+        width: 100%;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-radius: 36px;
+        padding: 40px 32px;
+        box-shadow:
+          0 30px 60px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--text-main);
+        position: relative;
+        z-index: 2;
+      }
 
-video{
-    width:100%;
-    border-radius:12px;
-    margin-bottom:20px;
-}
+      .header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
 
-.button{
-    display:block;
-    width:100%;
-    padding:14px;
-    margin-bottom:25px;
-    border:none;
-    border-radius:10px;
-    background:#3B82F6;
-    color:white;
-    font-size:16px;
-    text-decoration:none;
-    text-align:center;
-    cursor:pointer;
-    transition:.2s;
-}
+      .badge {
+        display: inline-block;
+        padding: 6px 18px;
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 50px;
+        margin-bottom: 14px;
+        letter-spacing: 0.5px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      }
 
-.button:hover{
-    opacity:.9;
-}
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        margin-bottom: 10px;
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
 
-label{
-    font-weight:bold;
-}
+      .desc {
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.6;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      }
 
-textarea{
-    margin-top:10px;
-    width:100%;
-    height:260px;
-    resize:none;
-    padding:15px;
-    border-radius:10px;
-    border:1px solid #ccc;
-    font-size:15px;
-    line-height:1.6;
-}
+      .video-wrapper {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
 
-.copyBtn{
-    margin-top:15px;
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    background:#16A34A;
-    color:white;
-    font-size:15px;
-}
+      video {
+        width: 100%;
+        display: block;
+        border-radius: 24px;
+      }
 
-.toast{
-    position:fixed;
-    bottom:30px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#222;
-    color:white;
-    padding:12px 20px;
-    border-radius:8px;
-    opacity:0;
-    transition:.3s;
-}
+      /* Base Button - Kapsul Glassmorphism ala iPhone */
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 16px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px; /* Super rounded / pill style */
+        font-size: 14.5px;
+        font-weight: 600;
+        cursor: pointer;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        color: #ffffff;
+        letter-spacing: 0.2px;
+      }
 
-.toast.show{
-    opacity:1;
-}
+      .btn:active {
+        transform: scale(0.96);
+      }
 
-</style>
-</head>
+      /* Tombol Utama (Download) - Kaca Biru Transparan */
+      .btn-primary {
+        background: rgba(59, 130, 246, 0.3);
+        box-shadow:
+          0 8px 25px rgba(37, 99, 235, 0.25),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        margin-bottom: 28px;
+      }
 
-<body>
+      .btn-primary:hover {
+        background: rgba(59, 130, 246, 0.45);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow:
+          0 10px 30px rgba(37, 99, 235, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
 
-<div class="container">
+      /* Tombol Sukses (Copy) - Kaca Hijau Transparan */
+      .btn-success {
+        background: rgba(16, 185, 129, 0.3);
+        box-shadow:
+          0 8px 25px rgba(16, 185, 129, 0.25),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        margin-top: 12px;
+      }
 
-<h1>Twibbon FORMADIKSI</h1>
+      .btn-success:hover {
+        background: rgba(16, 185, 129, 0.45);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow:
+          0 10px 30px rgba(16, 185, 129, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
 
-<p class="desc">
-Silakan download video twibbon, kemudian salin caption berikut.
-</p>
+      .caption-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
 
-<video controls preload="metadata">
-    <source src="twibbon.mp4" type="video/mp4">
-</video>
+      label {
+        font-weight: 600;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: 4px;
+      }
 
-<button class="button" onclick="downloadVideo()">
-    📥 Download Video Twibbon
-</button>
+      textarea {
+        width: 100%;
+        height: 190px;
+        resize: none;
+        padding: 18px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        color: #ffffff;
+        font-size: 13.5px;
+        line-height: 1.6;
+        outline: none;
+        transition: all 0.2s ease;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
 
-<label>Caption Instagram</label>
+      textarea:focus {
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+      }
 
-<textarea id="caption" readonly>
-Halo semuanya! 👋
+      /* Toast Notification Glassmorphism */
+      .toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 12px 26px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow:
+          0 15px 35px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 99;
+      }
 
-Dengan bangga saya mengikuti Open Recruitment FORMADIKSI Polinema 2026.
+      .toast.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
 
-Mari bersama berkembang, berkontribusi, dan menjadi bagian dari keluarga FORMADIKSI.
+      @media (max-width: 640px) {
+        .hero-container {
+          padding: 28px 20px;
+          border-radius: 28px;
+        }
+      }
+    </style>
+  </head>
 
-✨ Jangan lupa bergabung!
+  <body>
+    <main class="hero-section">
+      <div class="hero-container">
+        <div class="header">
+          <span class="badge">FORMADIKSI POLINEMA</span>
+          <h1>Twibbon SAMBA 2026</h1>
+          <p class="desc">
+            Unduh video twibbon dan salin caption di bawah ini untuk postingan
+            media sosial kamu.
+          </p>
+        </div>
 
-#FORMADIKSI
-#OpenRecruitment
-#Polinema
-</textarea>
+        <div class="video-wrapper">
+          <video controls preload="metadata">
+            <source src="twibbon.mp4" type="video/mp4" />
+            Browser tidak mendukung video.
+          </video>
+        </div>
 
-<button class="copyBtn" onclick="copyCaption()">
-📋 Copy Caption
-</button>
+        <button class="btn btn-primary" onclick="downloadVideo()">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            ></path>
+          </svg>
+          Download Video Twibbon
+        </button>
 
-</div>
+        <div class="caption-section">
+          <label for="caption">Caption Instagram</label>
+          <textarea id="caption" readonly>
+🌟[𝐒𝐀𝐌𝐁𝐔𝐓 𝐃𝐀𝐍 𝐌𝐎𝐓𝐈𝐕𝐀𝐒𝐈 𝐌𝐀𝐇𝐀𝐒𝐈𝐒𝐖𝐀 𝐁𝐀𝐑𝐔 𝐊𝐈𝐏 𝐊𝐔𝐋𝐈𝐀𝐇 𝐃𝐀𝐍 𝐀𝐅𝐈𝐑𝐌𝐀𝐒𝐈 𝐏𝐄𝐍𝐃𝐈𝐃𝐈𝐊𝐀𝐍 𝐏𝐎𝐋𝐈𝐓𝐄𝐊𝐍𝐈𝐊 𝐍𝐄𝐆𝐄𝐑𝐈 𝐌𝐀𝐋𝐀𝐍𝐆 𝐓𝐀𝐇𝐔𝐍 𝟐𝟎𝟐𝟔]🌟
 
-<div id="toast" class="toast">
-Caption berhasil disalin!
-</div>
+Halo, Mahasiswa Baru KIP Kuliah dan Afirmasi Pendidikan Politeknik Negeri Malang! 👋
 
-<script>
+Perkenalkan, saya [𝐍𝐚𝐦𝐚] dari [𝐏𝐫𝐨𝐠𝐫𝐚𝐦 𝐒𝐭𝐮𝐝𝐢].
 
-function copyCaption(){
+Dengan penuh semangat, saya siap menjadi bagian dari 𝐒𝐚𝐦𝐛𝐮𝐭 𝐝𝐚𝐧 𝐌𝐨𝐭𝐢𝐯𝐚𝐬𝐢 𝐌𝐚𝐡𝐚𝐬𝐢𝐬𝐰𝐚 𝐁𝐚𝐫𝐮 𝐊𝐈𝐏 𝐊𝐮𝐥𝐢𝐚𝐡 𝐝𝐚𝐧 𝐀𝐟𝐢𝐫𝐦𝐚𝐬𝐢 𝐏𝐞𝐧𝐝𝐢𝐝𝐢𝐤𝐚𝐧 𝐏𝐨𝐥𝐢𝐭𝐞𝐤𝐧𝐢𝐤 𝐍𝐞𝐠𝐞𝐫𝐢 𝐌𝐚𝐥𝐚𝐧𝐠 𝐓𝐚𝐡𝐮𝐧 𝟐𝟎𝟐𝟔 yang mengusung tema:
 
-    const text=document.getElementById("caption");
+"Bersatu Sebagai Satu Keluarga, Bertumbuh Menuju Keunggulan."
 
-    navigator.clipboard.writeText(text.value);
+Saatnya membuka lembaran baru, bertemu teman-teman hebat dari berbagai daerah, saling menginspirasi, dan bertumbuh bersama dalam keluarga besar Formadiksi Polinema.
 
-    const toast=document.getElementById("toast");
+✨ [𝐐𝐮𝐨𝐭𝐞𝐬]
 
-    toast.classList.add("show");
+🌱 [𝐏𝐞𝐧𝐠𝐚𝐥𝐚𝐦𝐚𝐧 𝐭𝐞𝐫𝐮𝐧𝐢𝐤 𝐬𝐞𝐥𝐚𝐦𝐚 𝐦𝐞𝐧𝐣𝐚𝐝𝐢 𝐦𝐚𝐛𝐚]
 
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },1800);
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+Mari ciptakan awal perjalanan yang penuh semangat, kebersamaan, dan cerita yang tak terlupakan. Sampai jumpa di Samba 2026! 💙
 
-}
+@formadiksi_polinema
 
-function downloadVideo() {
-    const link = document.createElement("a");
-    link.href = "twibbon.mp4";
-    link.download = "Twibbon_FORMADIKSI.mp4";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+#FormadiksiPolinema
+#SemangatGapaiAsa
+#AfirmasiPendidikan
+#KIPKuliah
+#GenerasiEmasIndonesia
+#Samba2026
+#SambaFormadiksi
+#SambaPolinema2026
+#MabaPenerimaKIPKuliahDanAfirmasiPendidikanPolinema2026
+</textarea
+          >
 
-</script>
+          <button class="btn btn-success" id="copyBtn" onclick="copyCaption()">
+            <svg
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <span id="copyText">Salin Caption</span>
+          </button>
+        </div>
+      </div>
+    </main>
 
-</body>
+    <div id="toast" class="toast">
+      <svg
+        width="18"
+        height="18"
+        fill="none"
+        stroke="#34d399"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2.5"
+          d="M5 13l4 4L19 7"
+        ></path>
+      </svg>
+      <span>Caption berhasil disalin!</span>
+    </div>
+
+    <script>
+      function copyCaption() {
+        const text = document.getElementById("caption");
+        const copyText = document.getElementById("copyText");
+
+        navigator.clipboard.writeText(text.value);
+
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+
+        copyText.innerText = "Berhasil Disalin!";
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+          copyText.innerText = "Salin Caption";
+        }, 2000);
+      }
+
+      function downloadVideo() {
+        const link = document.createElement("a");
+        link.href = "twibbon.mp4";
+        link.download = "Twibbon_SAMBA_2026.mp4";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    </script>
+  </body>
 </html>
