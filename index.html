@@ -129,6 +129,7 @@
         width: 100%;
         display: block;
         border-radius: 24px;
+        object-fit: cover; /* Biar thumbnail pas & tidak melar */
       }
 
       /* Base Button - Kapsul Glassmorphism ala iPhone */
@@ -281,7 +282,7 @@
         </div>
 
         <div class="video-wrapper">
-          <video controls preload="metadata">
+          <video controls preload="metadata" poster="thumbnail.jpeg">
             <source src="twibbon.mp4" type="video/mp4" />
             Browser tidak mendukung video.
           </video>
