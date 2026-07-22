@@ -116,6 +116,75 @@
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
       }
 
+      /* Rules Accordion Glassmorphism */
+      .rules-section {
+        margin-bottom: 20px; /* Diubah dari margin-top jadi margin-bottom agar memberi jarak ke video */
+      }
+
+      .rules-toggle {
+        width: 100%;
+        padding: 14px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 13.5px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        transition: all 0.25s ease;
+      }
+
+      .rules-toggle:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      #rulesArrow {
+        transition: transform 0.3s ease;
+      }
+
+      .rules-toggle.active #rulesArrow {
+        transform: rotate(180deg);
+      }
+
+      .rules-content {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease-out,
+          opacity 0.25s ease;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        margin-top: 8px;
+        backdrop-filter: blur(10px);
+      }
+
+      .rules-content.show {
+        max-height: 300px;
+        opacity: 1;
+        padding: 16px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .rules-content ul {
+        padding-left: 18px;
+        color: var(--text-muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .rules-content li {
+        margin-bottom: 6px;
+      }
+
+      .rules-content li:last-child {
+        margin-bottom: 0;
+      }
+
       .video-wrapper {
         background: rgba(0, 0, 0, 0.5);
         border-radius: 24px;
@@ -129,7 +198,7 @@
         width: 100%;
         display: block;
         border-radius: 24px;
-        object-fit: cover; /* Biar thumbnail pas & tidak melar */
+        object-fit: cover;
       }
 
       /* Base Button - Kapsul Glassmorphism ala iPhone */
@@ -141,7 +210,7 @@
         width: 100%;
         padding: 16px 24px;
         border: 1px solid rgba(255, 255, 255, 0.35);
-        border-radius: 50px; /* Super rounded / pill style */
+        border-radius: 50px;
         font-size: 14.5px;
         font-weight: 600;
         cursor: pointer;
@@ -281,6 +350,45 @@
           </p>
         </div>
 
+        <!-- Ketentuan Twibbon (Sekarang di atas video) -->
+        <div class="rules-section">
+          <button class="rules-toggle" onclick="toggleRules()">
+            <span>Ketentuan Twibbon</span>
+            <svg
+              id="rulesArrow"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+
+          <div class="rules-content" id="rulesContent">
+            <ul>
+              <li>
+                Foto twibbon menampilkan foto yang jelas dengan background yang
+                menarik
+              </li>
+              <li>Berpakaian bebas rapi</li>
+              <li>Foto yang di-upload tidak mengandung unsur SARA</li>
+              <li>Deadline mengunggah twibbon pada tanggal (...)</li>
+              <li>Twibbon diunggah pada akun Instagram pribadi</li>
+              <li>
+                Mencantumkan caption sesuai ketentuan pada postingan twibbon
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <div class="video-wrapper">
           <video controls preload="metadata" poster="thumbnail.jpeg">
             <source src="twibbon.mp4" type="video/mp4" />
@@ -316,7 +424,7 @@ Halo, Mahasiswa Baru KIP Kuliah dan Afirmasi Pendidikan Politeknik Negeri Malang
 
 Perkenalkan, saya [𝐍𝐚𝐦𝐚] dari [𝐏𝐫𝐨𝐠𝐫𝐚𝐦 𝐒𝐭𝐮𝐝𝐢].
 
-Dengan penuh semangat, saya siap menjadi bagian dari 𝐒𝐚𝐦𝐛𝐮𝐭 𝐝𝐚𝐧 𝐌𝐨𝐭𝐢𝐯𝐚𝐬𝐢 𝐌𝐚𝐡𝐚𝐬𝐢𝐬𝐰𝐚 𝐁𝐚𝐫𝐮 𝐊𝐈𝐏 𝐊𝐮𝐥𝐢𝐚𝐡 𝐝𝐚𝐧 𝐀𝐟𝐢𝐫𝐦𝐚𝐬𝐢 𝐏𝐞𝐧𝐝𝐢𝐝𝐢𝐤𝐚𝐧 𝐏𝐎𝐋𝐈𝐓𝐄𝐊𝐍𝐈𝐊 𝐍𝐄𝐆𝐄𝐑𝐈 𝐌𝐀𝐋𝐀𝐍𝐆 𝐓𝐀𝐇𝐔𝐍 𝟐𝟎𝟐𝟔 yang mengusung tema:
+Dengan penuh semangat, saya siap menjadi bagian dari 𝐒𝐚𝐦𝐛𝐮𝐭 𝐝𝐚𝐧 𝐌𝐨𝐭𝐢𝐯𝐚𝐬𝐢 𝐌𝐚𝐡𝐚𝐬𝐢𝐬𝐰𝐚 𝐁𝐚𝐫𝐮 𝐊𝐈𝐏 𝐊𝐮𝐥𝐢𝐚𝐡 𝐝𝐚𝐧 𝐀𝐅𝐈𝐑𝐌𝐀𝐒𝐈 𝐏𝐄𝐍𝐃𝐈𝐃𝐈𝐊𝐀𝐍 𝐏𝐎𝐋𝐈𝐓𝐄𝐊𝐍𝐈𝐊 𝐍𝐄𝐆𝐄𝐑𝐈 𝐌𝐀𝐋𝐀𝐍𝐆 𝐓𝐀𝐇𝐔𝐍 𝟐𝟎𝟐𝟔 yang mengusung tema:
 
 "Bersatu Sebagai Satu Keluarga, Bertumbuh Menuju Keunggulan."
 
@@ -409,6 +517,14 @@ Mari ciptakan awal perjalanan yang penuh semangat, kebersamaan, dan cerita yang 
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+      }
+
+      function toggleRules() {
+        const content = document.getElementById("rulesContent");
+        const toggleBtn = document.querySelector(".rules-toggle");
+
+        content.classList.toggle("show");
+        toggleBtn.classList.toggle("active");
       }
     </script>
   </body>
