@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Twibbon FORMADIKSI</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    display:flex;
+    justify-content:center;
+    padding:40px 15px;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.desc{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+video{
+    width:100%;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.button{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin-bottom:25px;
+    border:none;
+    border-radius:10px;
+    background:#3B82F6;
+    color:white;
+    font-size:16px;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.button:hover{
+    opacity:.9;
+}
+
+label{
+    font-weight:bold;
+}
+
+textarea{
+    margin-top:10px;
+    width:100%;
+    height:260px;
+    resize:none;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.copyBtn{
+    margin-top:15px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#16A34A;
+    color:white;
+    font-size:15px;
+}
+
+.toast{
+    position:fixed;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#222;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Twibbon FORMADIKSI</h1>
+
+<p class="desc">
+Silakan download video twibbon, kemudian salin caption berikut.
+</p>
+
+<video controls preload="metadata">
+    <source src="twibbon.mp4" type="video/mp4">
+</video>
+
+<button class="button" onclick="downloadVideo()">
+    📥 Download Video Twibbon
+</button>
+
+<label>Caption Instagram</label>
+
+<textarea id="caption" readonly>
+Halo semuanya! 👋
+
+Dengan bangga saya mengikuti Open Recruitment FORMADIKSI Polinema 2026.
+
+Mari bersama berkembang, berkontribusi, dan menjadi bagian dari keluarga FORMADIKSI.
+
+✨ Jangan lupa bergabung!
+
+#FORMADIKSI
+#OpenRecruitment
+#Polinema
+</textarea>
+
+<button class="copyBtn" onclick="copyCaption()">
+📋 Copy Caption
+</button>
+
+</div>
+
+<div id="toast" class="toast">
+Caption berhasil disalin!
+</div>
+
+<script>
+
+function copyCaption(){
+
+    const text=document.getElementById("caption");
+
+    navigator.clipboard.writeText(text.value);
+
+    const toast=document.getElementById("toast");
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },1800);
+
+}
+
+function downloadVideo() {
+    const link = document.createElement("a");
+    link.href = "twibbon.mp4";
+    link.download = "Twibbon_FORMADIKSI.mp4";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+</script>
+
+</body>
+</html>
